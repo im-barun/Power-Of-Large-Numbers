@@ -1,0 +1,65 @@
+import java.util.*;
+public class Poweroflargenumber {
+
+	/**
+	 * @param args
+	 */
+	public static long find_pow(long N, long K)
+	{
+	    if(K==0) return 1;
+	    if(K==1) return N%1000000007;
+	    if(K%2 ==0)
+	    {
+	        long temp = find_pow(N,K/2);
+	        return (temp*temp)%1000000007;
+	    }
+	    else
+	    {
+	        long temp = find_pow(N,K/2);
+	        temp = (temp*temp)%1000000007;
+	        return (temp*N)%1000000007;
+	    }
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		for(int y=0;y<t;y++){
+		String s1=sc.next();
+		String s2=sc.next();
+		int A[] = new int[100009];
+		int B[] = new int[100009];
+		
+		for(int i=0 ; i<s1.length() ;i++)
+        {
+            A[i] = Character.getNumericValue(s1.charAt(i));
+        }
+    for(int i=0 ; i<s2.length() ;i++)
+        {
+            B[i] = Character.getNumericValue(s2.charAt(i));
+        }
+    long  M = 1000000007;
+    long  N = 1000000006;
+    long temp1 = A[0] % M;
+    for(int i=1 ; i< s1.length() ; i++)
+    {
+        temp1 = (10*temp1 + A[i] )% M; 
+       // System.out.print(A[i]);
+    }
+ //System.out.print("  ");
+long temp2 = B[0] % N;
+    for(int i=1 ; i< s2.length() ; i++)
+    {
+        temp2 = (10*temp2 + B[i] )% N; 
+        //System.out.print(B[i]);
+
+    }
+    //System.out.print("  "); 
+   // System.out.println(temp1);
+    //System.out.println(temp2);
+   System.out.println(find_pow(temp1,temp2));
+		}
+	}
+
+}
